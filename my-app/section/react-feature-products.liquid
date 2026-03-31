@@ -1,0 +1,63 @@
+{%- liquid
+  assign featured_collection = section.settings.collection
+  assign products_limit = section.settings.products_limit
+-%}
+
+{% comment %}
+  React bundle assets built from `my-app/dist/assets`.
+  Copy `react-app.css` and `react-app.js` to your theme `assets` folder.
+{% endcomment %}
+{{ 'react-app.css' | asset_url | stylesheet_tag }}
+
+<div id="react-app-root" data-section-id="{{ section.id }}"></div>
+
+<script id="shopify-featured-products-data" type="application/json">
+[
+  {%- if featured_collection != blank -%}
+    {%- for product in featured_collection.products limit: products_limit -%}
+      {
+        "id": {{ product.id | json }},
+        "handle": {{ product.handle | json }},
+        "title": {{ product.title | json }},
+        "url": {{ product.url | json }},
+        "price": {{ product.price | json }},
+        "compare_at_price": {{ product.compare_at_price | json }},
+        "available": {{ product.available | json }},
+        "featured_image": {{ product.featured_image | image_url: width: 1200 | json }},
+        "body_html": {{ product.description | strip_html | json }}
+      }{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  {%- endif -%}
+]
+</script>
+
+<script src="{{ 'react-app.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "React featured products",
+  "tag": "section",
+  "class": "section-react-feature-products",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_limit",
+      "label": "Products to show",
+      "min": 1,
+      "max": 12,
+      "step": 1,
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "React featured products"
+    }
+  ]
+}
+{% endschema %}
