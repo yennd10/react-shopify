@@ -1,14 +1,13 @@
 const fallbackProducts = [
   {
     id: 'fp-1',
-    title: 'Minimalist Sneakers',
+    title: 'Amara Cot & Chest Nursery Package - Beech',
     body_html: 'Form gon, di em chan, hop moi outfit.',
     price: 59000000,
     compare_at_price: 69000000,
     url: '#',
     available: true,
-    featured_image:
-      'https://images.unsplash.com/photo-1528701800489-20be3c2b5c5a?auto=format&fit=crop&w=1200&q=80',
+    featured_image: 'https://placehold.co/100x100.png',
   },
   {
     id: 'fp-2',
@@ -18,8 +17,37 @@ const fallbackProducts = [
     compare_at_price: 52000000,
     url: '#',
     available: true,
-    featured_image:
-      'https://images.unsplash.com/photo-1526481280695-3c687fd643ed?auto=format&fit=crop&w=1200&q=80',
+    featured_image: 'https://placehold.co/300x300.png',
+  },
+  {
+    id: 'fp-2',
+    title: 'Everyday Backpack',
+    body_html: 'Ngan rong rai, chong soc nhe, de mang theo.',
+    price: 42000000,
+    compare_at_price: 52000000,
+    url: '#',
+    available: true,
+    featured_image: 'https://placehold.co/300x300.png',
+  },
+  {
+    id: 'fp-2',
+    title: 'Everyday Backpack',
+    body_html: 'Ngan rong rai, chong soc nhe, de mang theo.',
+    price: 42000000,
+    compare_at_price: 52000000,
+    url: '#',
+    available: true,
+    featured_image: 'https://placehold.co/300x300.png',
+  },
+  {
+    id: 'fp-2',
+    title: 'Everyday Backpack',
+    body_html: 'Ngan rong rai, chong soc nhe, de mang theo.',
+    price: 42000000,
+    compare_at_price: 52000000,
+    url: '#',
+    available: true,
+    featured_image: 'https://placehold.co/300x300.png',
   },
 ]
 
@@ -81,52 +109,54 @@ export default function FeatureProducts() {
     .filter((product) => product.id && product.title)
 
   return (
-    <section className="tw:py-10">
-      <header className="tw:mb-6">
-        <h2 className="tw:text-2xl tw:font-bold tw:text-slate-900">
+    <section className="tw:mt-8">
+      <header className="tw:mb-8 tw:after:block tw:after:content[''] tw:after:w-full tw:after:border-b tw:after:border-gray-500 tw:after:pb-4">
+        <h2 className="tw:text-xl tw:text-black tw:text-center tw:uppercase tw:font-[500] tw:leading-[1.5] tw:tracking-[1px]">
           Featured Products
         </h2>
+        <div className="tw:max-w-[700px] tw:mt-4 tw:ml-auto tw:mr-auto tw:text-center tw:truncate" >The longest word in any of the major English language dictionaries is pneumonoultramicroscopicsilicovolcanoconiosis, a word that refers to a lung disease contracted from the inhalation of very fine silica particles, specifically from a volcano; medically, it is the same as silicosis.</div>
       </header>
 
-      <ul className="tw:grid tw:grid-cols-1 sm:tw:grid-cols-2 lg:tw:grid-cols-4 tw:gap-6">
+      <ul className="tw:grid tw:grid-cols-2 tw:md:grid-cols-4 tw:gap-6">
         {products.map((product) => (
           <li key={product.id}>
-            <article className="tw:h-full tw:bg-white tw:rounded-2xl tw:overflow-hidden tw:border tw:border-slate-200 tw:hover:tw:shadow-lg tw:transition tw:duration-300">
-              <div className="tw:aspect-[4/3] tw:bg-slate-100">
+            <article className="tw:h-full tw:flex tw:flex-col tw:border tw:border-[#ccc] tw:rounded-lg tw:overflow-hidden">
+              <a href={product.url} className="">
                 {product.featuredImage ? (
                   <img
                     src={product.featuredImage}
                     alt={product.title}
                     loading="lazy"
-                    className="tw:object-cover tw:w-full tw:h-full"
+                    className="tw:object-cover tw:w-full tw:h-full tw:scale-90"
                   />
                 ) : null}
-              </div>
+              </a>
 
-              <div className="tw:p-4">
-                <div className="tw:flex tw:items-start tw:justify-between tw:gap-3">
-                  <h3 className="tw:text-base tw:font-semibold tw:text-slate-900">
+              <div className="tw:flex tw:flex-col tw:p-4 tw:gap-2">
+                <div className="tw:flex tw:gap-4 tw:items-start">
+                  <a href={product.url} className="tw:text-[16px] tw:text-black tw:leading-[1.2] tw:hover:text-blue-500 tw:hover:underline tw:hover:underline-offset-3">
                     {product.title}
-                  </h3>
-                  <span className="tw:shrink-0 tw:inline-flex tw:items-center tw:px-2 tw:py-1 tw:text-xs tw:font-medium tw:rounded-full tw:bg-slate-100 tw:text-slate-700">
+                  </a>
+                  <span style={{"--var-p": "2px", "--my-color": "#f00"}} className="tw:shrink-0 tw:text-[12px] tw:text-[#ccc] tw:p-(--var-p)">
                     {product.available ? 'In stock' : 'Sold out'}
                   </span>
                 </div>
 
-                <div className="tw:mt-4 tw:flex tw:items-center tw:gap-3">
+                <div className="tw:flex tw:items-end tw:gap-2 tw:mb-2">
                   {product.compareAtPriceInCents > product.priceInCents ? (
-                    <span className="tw:text-sm tw:text-slate-500 tw:line-through">
+                    <span className="tw:text-[14px] tw:text-[#ccc] tw:line-through tw:decoration-black">
                       {formatMoneyFromCents(product.compareAtPriceInCents)}
                     </span>
                   ) : null}
-                  <span className="tw:text-lg tw:font-bold tw:text-slate-900">
+                  <span className="tw:tex-[18px]">
                     {formatMoneyFromCents(product.priceInCents)}
                   </span>
                 </div>
 
                 <a
                   href={product.url}
-                  className="tw:mt-4 tw:inline-flex tw:w-full tw:items-center tw:justify-center tw:px-3 tw:py-2 tw:bg-slate-900 tw:text-white tw:rounded-xl tw:hover:tw:bg-slate-800 tw:transition"
+                  className="tw:rounded-lg tw:p-2 tw:block
+                  tw:bg-black tw:hover:bg-[#ccc] tw:text-white tw:hover:text-[#000] tw:text-[16px] tw:text-center tw:capitalize tw:transition-all tw:ease-in tw:duration-300"
                 >
                   View product
                 </a>

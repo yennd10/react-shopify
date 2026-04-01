@@ -9,7 +9,7 @@
 {% endcomment %}
 {{ 'react-app.css' | asset_url | stylesheet_tag }}
 
-<div id="react-app-root" data-section-id="{{ section.id }}"></div>
+<div id="react-app-root"></div>
 
 <script id="shopify-featured-products-data" type="application/json">
 [
@@ -56,7 +56,8 @@
   ],
   "presets": [
     {
-      "name": "React featured products"
+      "name": "React featured products",
+      "blocks": []
     }
   ]
 }
